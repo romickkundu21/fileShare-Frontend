@@ -1,0 +1,250 @@
+
+:root{
+    --border-color:#d18c0247;
+    --container-width:500px;
+    --bg-color:antiquewhite;
+}
+
+body, html{
+    background-color: var(--bg-color);
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 100%;
+    padding:0;
+    margin:0;
+    overflow: hidden;
+}
+
+body, .drop-zone, .upload-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+}
+
+body{
+    flex-direction: row;
+}
+
+.upload-container{
+    background-color: #fff;
+    border-radius:30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.drop-zone{
+    margin:30px;
+    width: var(--container-width);
+    min-height: 200px;
+    border: 2px dashed var(--border-color);
+    border-radius:20px;
+    transition: all 0.2s ease;
+}
+
+.dragged.drop-zone{
+    background-color:var(--bg-color);
+    border-color:#82580547;
+}
+
+.icon-container{
+    width: 75px;
+    height: 100px;
+    position: relative;
+}
+
+.icon-container img{
+    width: 75px;
+    position: absolute;
+    transform-origin: bottom;
+    transition: transform 250ms ease-in-out;
+    filter: hue-rotate(162deg);
+}
+.icon-container .right, .icon-container .left{
+    filter: grayscale(60%) hue-rotate(162deg);
+    transform: scale(.9);
+}
+
+.dragged .icon-container .right{
+    transform: rotate(10deg) translateX(20px) scale(.9);
+}
+.dragged .icon-container .left{
+    transform: rotate(-10deg) translateX(-20px) scale(.9);
+}
+
+.dragged .icon-container{
+    transform: translateY(-5px);
+}
+
+.icon-container .center{
+    z-index: 2;
+}
+
+#fileinput{
+    display: none;
+}
+
+.browseFile{
+    color:rgb(204, 115, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.progress-container{
+    width:var(--container-width);
+    height: 70px;
+    border: 2px solid var(--bg-color);
+    margin-bottom:25px;
+    border-radius:10px;
+    position: relative;
+    display:none;
+}
+
+.progress-container .bg-progress{
+    background-color: var(--bg-color);
+    width:0%;
+    height:100%;
+    border-radius: 2%;
+    transition: width 0.25s linear;
+    /* transform: scaleX(0); */
+    position:absolute;
+}
+
+.progress-container .inner-container {
+    position:absolute;
+    z-index: 1;
+    margin:10px 15px;
+    width:calc(100% - 30px);
+}
+
+.percent-container{
+    opacity:.8;
+    font-size: 12px;
+    margin:5px;
+}
+
+.progress-bar{
+    height:3px;
+    width:100%;
+    transform-origin:left;
+    border-radius:2px;
+    background-color: rgb(255, 145, 0);
+    transform: scaleX(0);
+    transition: transform 0.25s linear;
+}
+
+.sharing-container{
+    width:var(--container-width);
+    margin-bottom: 20px;
+    display: none;
+}
+
+p{
+    opacity: 0.7;
+    text-align: center;
+}
+
+.input-container{
+    position: relative;
+}
+
+.sharing-container .input-container input{
+    width:100%;
+    border: 2px dashed var(--border-color);
+    border-radius:6px;
+    padding:10px 15px;
+    box-sizing: border-box;
+    font-size:20px;
+    background-color: rgb(254, 247, 238);
+    color: #0000008c;
+}
+
+.input-container img{
+    position:absolute;
+    height:22px;
+    width:30px;
+    right:7px;
+    top:12px;
+    background-color: rgb(254, 247, 238);
+    cursor:pointer;
+}
+
+.email-container{
+    display:flex;
+    align-items:center;
+}
+
+.email-container label{
+    font-size: 18px;
+}
+
+.email-container input{
+    font-size: 18px;
+    border:none;
+    text-align:center;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.email-container input:focus{
+    outline:none;
+}
+
+.email-container form{
+    width:100%;
+    border:2px solid var(--border-color);
+    border-radius:10px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+}
+
+.email-container .field{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:5px;
+    width:400px;
+}
+
+.sendEmail{
+    font-size: 18px;
+    padding:8px 30px;
+    margin-top: 15px;
+    background-color: var(--bg-color);
+    border:none;
+    border-radius:5px;
+    color:rgb(122, 88, 37);
+    cursor: pointer;
+}
+
+.toast{
+    position:absolute;
+    bottom:10px;
+    left: 50%;
+    transform: translate(-50%,60px);
+    padding:10px 20px;
+    border-radius:5px;
+    background-color: rgb(204, 115, 0);
+    color:#fff;
+    font-size: 18px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.uploadVector{
+    background: url(./img/uploadVector.svg) no-repeat center;
+    background-size:contain;
+    height:50vh;
+    width:45vw;
+}
+
+@media screen and (max-width:900px){
+    :root{
+        --container-width:320px;
+    }
+    .uploadVector{
+        display:none;
+    }
+    .email-container .field{
+        flex-direction:column;
+        width:300px;
+    }
+}
